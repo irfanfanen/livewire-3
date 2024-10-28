@@ -13,7 +13,23 @@
                 <x-nav-link :active="request()->routeIs('about')" :href="route('about')">About</x-nav-link>
                 <x-nav-link :active="request()->routeIs('contact')" href="/contact">Contact</x-nav-link>
                 <x-nav-link :active="request()->routeIs('posts.*')" href="/posts">Posts</x-nav-link>
+                <x-nav-link :active="request()->routeIs('users')" href="/users">Users</x-nav-link>
 
+
+            </ul>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                @auth
+                    <form action="{{route('logout')}}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-primary">
+                            Logout
+                        </button>
+                    </form>
+                @else
+                    <x-nav-link href="/login/">
+                        Login
+                    </x-nav-link>
+                @endauth
             </ul>
         </div>
     </div>
